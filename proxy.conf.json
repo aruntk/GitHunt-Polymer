@@ -1,0 +1,18 @@
+{
+  "/graphql": {
+    "target": "http://localhost:3010",
+    "secure": false
+  },
+  "/graphiql": {
+    "target": "http://localhost:3010",
+    "secure": false
+  },
+  "/login": {
+    "target": "http://localhost:3010",
+    "secure": false
+  },
+  "/logout": {
+    "target": "http://localhost:3010",
+    "secure": false
+  }
+}

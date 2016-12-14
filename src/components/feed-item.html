@@ -1,0 +1,59 @@
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
+
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
+<link rel="import" href="../bower_components/paper-item/paper-item-body.html">
+<link rel="import" href="../bower_components/paper-styles/paper-styles.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="feed-item">
+  <template>
+    <style>
+:host {
+  background: white;
+  margin: 1px;
+}
+    .avatar {
+      display: inline-block;
+      box-sizing: border-box;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+    .avatar iron-image {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+
+    }
+    </style>
+    <paper-icon-item>
+      <div class="avatar" item-icon>
+        <iron-image src="{{entry.repository.owner.avatar_url}}" sizing="contain">
+        </iron-image>
+      </div>
+      <paper-item-body two-line>
+        <div>
+          <a href="{{entry.repository.html_url}}">
+            {{entry.repository.full_name}}
+          </a>
+        </div>
+        <div secondary class="layout vertical">
+          <div class="layout horizontal">
+            <div class="flex">
+              Stars: {{entry.repository.stargazers_count}}
+            </div>
+            <div class="flex">
+              Owner: {{entry.repository.owner.login}}
+            </div>
+            <div class="flex">
+              Posted By: {{entry.postedBy.login}}
+            </div>
+          </div>
+        </div>
+      </paper-item-body>
+      <paper-icon-button icon="star" alt="favourite this!">
+      </paper-icon-button>
+    </paper-icon-item>
+  </template>
+</dom-module>

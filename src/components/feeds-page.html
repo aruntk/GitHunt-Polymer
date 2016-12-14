@@ -1,0 +1,31 @@
+<link rel="import" href="../bower_components/paper-header-panel/paper-header-panel.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../bower_components/paper-styles/paper-styles.html">
+<link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="feed-item.html">
+
+<dom-module id="feeds-page">
+  <template>
+    <paper-header-panel mode="standard" class="fit">
+      <paper-toolbar>
+        <h2> GitHunt-Polymer</h2>
+      </paper-toolbar>
+      <div main class="vertical layout">
+        <div class="vertical layout center">
+          <paper-spinner active="{{loading}}"></paper-spinner>
+        </div>
+        <template is="dom-repeat" items="{{feed}}" as="entry">
+          <feed-item entry="{{entry}}"></feed-item>
+        </template>
+      </div>
+      <div class="vertical layout center">
+        <paper-button on-tap="loadMore">
+          Load More
+        </paper-button>
+      </div>
+    </paper-header-panel>
+  </template>
+</dom-module>
