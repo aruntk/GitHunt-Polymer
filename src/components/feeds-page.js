@@ -74,5 +74,8 @@ class feedsPage {
   loadMore() {
     // load more
   }
+  login() {
+    // login
+  }
 }
 Polymer(feedsPage);
