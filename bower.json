@@ -25,6 +25,8 @@
     "iron-image": "PolymerElements/iron-image#^1.2.5",
     "iron-icon": "PolymerElements/iron-icon#^1.0.12",
     "iron-icons": "PolymerElements/iron-icons#^1.2.0",
-    "morph-animation": "aruntk/morph-animation#^1.0.4"
+    "morph-animation": "aruntk/morph-animation#^1.0.4",
+    "platinum-sw": "PolymerElements/platinum-sw#^1.3.0",
+    "iron-localstorage": "PolymerElements/iron-localstorage#^1.0.6"
   }
 }

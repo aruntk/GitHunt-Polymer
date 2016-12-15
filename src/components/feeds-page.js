@@ -103,5 +103,8 @@ class feedsPage {
       }, 300);
     }
   }
+  displayInstalledToast() {
+    this.$['caching-complete'].show();
+  }
 }
 Polymer(feedsPage);
