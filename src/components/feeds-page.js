@@ -40,19 +40,13 @@ class feedsPage {
         type: Object,
         value: null,
       },
-      type: {
-        type: String,
-        value: 'NEW',
-      },
-      limit: {
-        type: Number,
-        value: 5,
-      },
-      offset: {
-        type: Number,
-        value: 0,
+      routeData: {
+        type: Object,
       },
     });
+    this.observers = [
+      'routeChange(route.path)',
+    ];
   }
   get behaviors() {
     return [
@@ -63,25 +57,41 @@ class feedsPage {
     return {
       feed: {
         query: feed,
-        options: 'getOptions(type, limit, offset)',
+        options: 'getOptions(routeData.*)',
         loadingKey: 'loading',
+        success(r) {
+          this.set('loading', r.loading);
+        },
       },
     };
   }
-  getOptions(type, limit, offset) {
+  getOptions() {
+    const route = this.routeData;
+    const offset = parseInt(route.offset, 10);
+    const limit = parseInt(route.limit, 10);
+
     return {
       variables: {
-        type,
+        type: route.type,
         limit,
         offset,
       },
     };
   }
+  routeChange(p) {
+    if (!p) {
+      this.set('route.path', '/NEW/5/0');
+    }
+  }
   loadMore() {
     const self = this;
+    self.set('loading', true);
+    const offset = parseInt(self.routeData.offset, 10);
+    const limit = parseInt(self.routeData.limit, 10);
+    const newOffset = offset + limit;
     self.$apollo.queries.feed.fetchMore({
       variables: {
-        offset: self.offset + self.limit,
+        offset: newOffset,
       },
       updateQuery(prev, { fetchMoreResult }) {
         const ret = [...prev.feed, ...fetchMoreResult.data.feed];
@@ -89,7 +99,9 @@ class feedsPage {
       },
     })
       .then(() => {
-        this.limit += this.offset;
+        self.set('routeData.offset', newOffset);
+        // self.set('routeData.limit', limit + 5);
+        self.set('loading', false);
       });
     // TODO load more
   }

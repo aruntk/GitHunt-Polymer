@@ -1,3 +1,6 @@
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 
@@ -27,20 +30,32 @@
   padding: 40px;
 }
     </style>
+    <!--================== <Router> ================-->
+
+    <app-location route="{{route}}" use-hash-as-path></app-location>
+
+    <app-route route="{{route}}"
+               use-hash-as-path
+      pattern="/:type/:limit/:offset"
+      data="{{routeData}}">
+    </app-route>
+
+    <!--================= </Router> ================-->
+
     <paper-drawer-panel>
       <div drawer> 
         <paper-toolbar id="drawerToolbar">
 
         </paper-toolbar>
-        <paper-menu selected="0">
-          <paper-icon-item>
+        <paper-menu selected="{{routeData.type}}" attr-for-selected="name">
+          <paper-icon-item name="NEW">
             <iron-icon icon="today" item-icon>
             </iron-icon>
             <paper-item-body>
               New
             </paper-item-body>
           </paper-icon-item>
-          <paper-icon-item>
+          <paper-icon-item name="HOT">
             <iron-icon icon="trending-up" item-icon>
             </iron-icon>
             <paper-item-body>
@@ -55,12 +70,13 @@
           <paper-button on-tap="login">Login</paper-button>
         </paper-toolbar>
         <div class="vertical layout centre container">
-          <div class="vertical layout center">
-            <paper-spinner active="{{loading}}"></paper-spinner>
-          </div>
           <template is="dom-repeat" items="{{feed}}" as="entry">
             <feed-item entry="{{entry}}"></feed-item>
           </template>
+          <div class="vertical layout center">
+            <paper-spinner active="{{loading}}"></paper-spinner>
+          </div>
+
           <div class="vertical layout center">
             <paper-button on-tap="loadMore">
               Load More
