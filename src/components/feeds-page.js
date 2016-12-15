@@ -43,6 +43,14 @@ class feedsPage {
       routeData: {
         type: Object,
       },
+      offset: {
+        type: Number,
+        value: 0,
+      },
+      limit: {
+        type: Number,
+        value: 5,
+      },
     });
     this.observers = [
       'routeChange(route.path)',
@@ -57,7 +65,7 @@ class feedsPage {
     return {
       feed: {
         query: feed,
-        options: 'getOptions(routeData.*)',
+        options: 'getOptions(limit,routeData.type)',
         loadingKey: 'loading',
         success(r) {
           this.set('loading', r.loading);
@@ -65,14 +73,11 @@ class feedsPage {
       },
     };
   }
-  getOptions() {
-    const route = this.routeData;
-    const offset = parseInt(route.offset, 10);
-    const limit = parseInt(route.limit, 10);
-
+  getOptions(limit, type) {
+    const offset = 0;
     return {
       variables: {
-        type: route.type,
+        type,
         limit,
         offset,
       },
@@ -80,30 +85,28 @@ class feedsPage {
   }
   routeChange(p) {
     if (!p) {
-      this.set('route.path', '/NEW/5/0');
+      this.set('route.path', '/NEW');
     }
   }
   loadMore() {
     const self = this;
     self.set('loading', true);
-    const offset = parseInt(self.routeData.offset, 10);
-    const limit = parseInt(self.routeData.limit, 10);
+    const offset = parseInt(self.offset, 10);
+    const limit = parseInt(self.limit, 10);
     const newOffset = offset + limit;
     self.$apollo.queries.feed.fetchMore({
       variables: {
         offset: newOffset,
       },
       updateQuery(prev, { fetchMoreResult }) {
-        const ret = [...prev.feed, ...fetchMoreResult.data.feed];
+        const ret = [...self.feed, ...fetchMoreResult.data.feed];
         return self.set('feed', ret);
       },
     })
       .then(() => {
-        self.set('routeData.offset', newOffset);
-        // self.set('routeData.limit', limit + 5);
+        self.set('offset', newOffset);
         self.set('loading', false);
       });
-    // TODO load more
   }
   login() {
     // TODO login
