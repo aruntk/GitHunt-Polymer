@@ -139,7 +139,10 @@
             </div>
 
             <div class="section">
-              Submitted {{timeAgo(entry.createdAt)}} by {{entry.postedBy.login}}
+              Submitted {{timeAgo(entry.createdAt)}} by 
+              <a href="{{entry.postedBy.html_url}}">
+                {{entry.postedBy.login}}
+              </a>
             </div>
           </div>
         </div>
