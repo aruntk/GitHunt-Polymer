@@ -1,0 +1,51 @@
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-dialog-scrollable/paper-dialog-scrollable.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+
+<dom-module id="add-new">
+  <template>
+    <style>
+#addFab {
+  position: fixed;
+  z-index: 102;
+  bottom: 30px;
+  right: 30px;
+}
+#addDialog {
+  border-top: 3px solid var(--accent-color);
+}
+.dialog-contents {
+  min-height: 100px;
+  min-width: 300px;
+}
+
+    </style>
+    <!-- morphThis method and morph-target attribute comes from https://github.com/aruntk/morph-animation.  -->
+    <paper-fab icon="add"
+               id="addFab"
+               disabled="{{!currentUser}}"
+               on-tap="morphThis"
+               morph-target="#addDialog">
+    </paper-fab>
+    <paper-dialog id="addDialog">
+      <h2>Submit a Respository</h2>
+      <paper-dialog-scrollable>
+        <div class="dialog-contents">
+          <paper-input label="Respository Name"
+                       id="repoName"
+                       auto-validate
+                       pattern=".*\/.*"
+                       error-message="Error in repo name. correct - org_name/repo_name">
+          </paper-input>
+        </div>
+      </paper-dialog-scrollable>
+      <div class="buttons">
+        <paper-button dialog-dismiss>Cancel</paper-button>
+        <paper-button dialog-confirm autofocus on-tap="addNew">Accept</paper-button>
+      </div>
+    </paper-dialog>
+
+  </template>
+</dom-module>

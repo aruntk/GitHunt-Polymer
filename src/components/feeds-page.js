@@ -2,6 +2,7 @@
 import gql from 'graphql-tag';
 import { PolymerApolloBehavior } from '../client';
 import './feed-item';
+import './add-new';
 
 const feed = gql`query Feed($type: FeedType!, $offset: Int, $limit: Int) {
     currentUser {
@@ -56,7 +57,6 @@ class feedsPage {
   get behaviors() {
     return [
       PolymerApolloBehavior,
-      MorphBehavior,
     ];
   }
   get apollo() {
@@ -82,9 +82,6 @@ class feedsPage {
   }
   login() {
     // TODO login
-  }
-  addNew() {
-    // TODO add New
   }
 }
 Polymer(feedsPage);
