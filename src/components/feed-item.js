@@ -45,9 +45,11 @@ class feedItem {
     }).then((data) => {
       // Result
       console.log(data); // eslint-disable-line no-console
+      document.querySelector('feeds-page').toast('Successful.!');
     }).catch((error) => {
       // Error
       console.log(error); // eslint-disable-line no-console
+      document.querySelector('feeds-page').toast('Error. Check console for details.');
     });
   }
   _returnFavClass(v, t) {

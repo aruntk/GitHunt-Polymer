@@ -94,5 +94,14 @@ class feedsPage {
   logout() {
     window.location.replace('/logout');
   }
+  toast(text) {
+    if (text) {
+      this.$.mainToast.hide();
+      this.$.mainToast.text = text;
+      this.async(() => {
+        this.$.mainToast.show();
+      }, 300);
+    }
+  }
 }
 Polymer(feedsPage);
