@@ -1,32 +1,9 @@
 /* globals MorphBehavior */
-import gql from 'graphql-tag';
 import { PolymerApolloBehavior } from '../client';
+import { feedQuery } from '../model/feed';
 import './feed-item';
 import './add-new';
 
-const feed = gql`query Feed($type: FeedType!, $offset: Int, $limit: Int) {
-    currentUser {
-      login
-    }
-    feed(type: $type, offset: $offset, limit: $limit) {
-    repository {
-      owner {
-        login
-        avatar_url
-      }
-      name
-      full_name
-      stargazers_count
-      html_url
-      description
-    }
-    postedBy {
-      login
-      html_url
-    }
-}
-}
-`;
 class feedsPage {
   beforeRegister() {
     this.is = 'feeds-page';
@@ -64,7 +41,7 @@ class feedsPage {
   get apollo() {
     return {
       feed: {
-        query: feed,
+        query: feedQuery,
         options: 'getOptions(limit,routeData.type)',
         loadingKey: 'loading',
         success(r) {
