@@ -1,14 +1,6 @@
 /* globals MorphBehavior */
-import gql from 'graphql-tag';
 import { PolymerApolloBehavior } from '../client';
-
-const SUBMIT_RESPOSITORY_MUTATION = gql`
-  mutation submitRepository($repoFullName: String!) {
-    submitRepository(repoFullName: $repoFullName) {
-      createdAt
-    }
-  }
-`;
+import submitRepositoryMutation from '../model/new-entry';
 
 class addNew {
   beforeRegister() {
@@ -18,6 +10,7 @@ class addNew {
         type: Object,
         value: null,
       },
+      value: String,
     });
   }
   get behaviors() {
@@ -27,7 +20,18 @@ class addNew {
     ];
   }
   addNew() {
-    // TODO add New
+    this.$apollo.mutate({
+      mutation: submitRepositoryMutation,
+      variables: {
+        repoFullName: this.value,
+      },
+    }).then((data) => {
+      // Result
+      console.log(data); // eslint-disable-line no-console
+    }).catch((error) => {
+      // Error
+      console.log(error); // eslint-disable-line no-console
+    });
   }
 }
 

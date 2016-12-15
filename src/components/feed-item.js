@@ -42,6 +42,12 @@ class feedItem {
         repoFullName: this.entry.repository.full_name,
         type,
       },
+    }).then((data) => {
+      // Result
+      console.log(data); // eslint-disable-line no-console
+    }).catch((error) => {
+      // Error
+      console.log(error); // eslint-disable-line no-console
     });
   }
   _returnFavClass(v, t) {

@@ -47,6 +47,9 @@ class feedsPage {
         success(r) {
           this.set('loading', r.loading);
         },
+        error(e) {
+          console.log(e); // eslint-disable-line no-console
+        },
       },
     };
   }
