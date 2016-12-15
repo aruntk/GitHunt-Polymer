@@ -32,3 +32,5 @@ npm start
 
 - Open the client at http://localhost:3000
 
+<img width="1280" alt="screen shot 2016-12-16 at 12 03 02 am" src="https://cloud.githubusercontent.com/assets/6007432/21237054/61a79d94-c323-11e6-8734-60d401205556.png">
+<img width="1280" alt="screen shot 2016-12-16 at 12 03 27 am" src="https://cloud.githubusercontent.com/assets/6007432/21237055/61ab8968-c323-11e6-82db-94fc4d445fd0.png">
