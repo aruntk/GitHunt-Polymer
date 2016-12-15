@@ -78,6 +78,19 @@ class feedsPage {
     };
   }
   loadMore() {
+    const self = this;
+    self.$apollo.queries.feed.fetchMore({
+      variables: {
+        offset: self.offset + self.limit,
+      },
+      updateQuery(prev, { fetchMoreResult }) {
+        const ret = [...prev.feed, ...fetchMoreResult.data.feed];
+        return self.set('feed', ret);
+      },
+    })
+      .then(() => {
+        this.limit += this.offset;
+      });
     // TODO load more
   }
   login() {
