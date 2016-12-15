@@ -1,3 +1,4 @@
+/* globals MorphBehavior */
 import gql from 'graphql-tag';
 import { PolymerApolloBehavior } from '../client';
 import './feed-item';
@@ -34,6 +35,10 @@ class feedsPage {
         value: [],
       },
       loading: Boolean,
+      currentUser: {
+        type: Object,
+        value: null,
+      },
       type: {
         type: String,
         value: 'NEW',
@@ -51,6 +56,7 @@ class feedsPage {
   get behaviors() {
     return [
       PolymerApolloBehavior,
+      MorphBehavior,
     ];
   }
   get apollo() {
@@ -72,10 +78,13 @@ class feedsPage {
     };
   }
   loadMore() {
-    // load more
+    // TODO load more
   }
   login() {
-    // login
+    // TODO login
+  }
+  addNew() {
+    // TODO add New
   }
 }
 Polymer(feedsPage);
