@@ -1,5 +1,6 @@
 <link rel="import" href="../bower_components/iron-image/iron-image.html">
 
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
 <link rel="import" href="../bower_components/paper-item/paper-item-body.html">
@@ -13,44 +14,96 @@
   background: white;
   margin: 1px;
 }
+  .item {
+    --paper-item:{
+      border-bottom: 2px solid white;
+    }
+    --paper-item-focused: {
+      background: white;
+      border-bottom: 2px solid var(--primary-color);
+    }
+    --paper-item-focused-before: {
+      opacity: 0;
+    };
+  }
     .avatar {
       display: inline-block;
       box-sizing: border-box;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
+      width: 50px;
+      height: 50px;
     }
     .avatar iron-image {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-
+      width: 50px;
+      height: 50px;
+    }
+    .item-body {
+      margin: 10px 20px;
+    }
+    .title {
+      @apply(--paper-font-title);
+      font-weight: 600;
+    }
+    .title > a {
+      text-decoration: none;
+      color: var(--primary-color);
+    }
+    .description {
+      @apply(--paper-font-subhead);
+      color: #666;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .section {
+      margin: 0px 10px 0px 0px;
+      padding: 0px 10px;
+      border-radius: 10px;
+    }
+    .section.highlighted {
+      background: var(--light-accent-color);
+      color: white;
+    }
+    .favorite paper-icon-button {
+      color: #666;
+    }
+    .favorite paper-icon-button.liked {
+      color: var(--paper-amber-500);
     }
     </style>
-    <paper-icon-item>
+    <paper-icon-item class="item">
       <div class="avatar" item-icon>
         <iron-image src="{{entry.repository.owner.avatar_url}}" sizing="contain">
         </iron-image>
       </div>
-      <paper-item-body two-line>
-        <div>
+      <paper-item-body two-line class="item-body">
+        <div class="title">
           <a href="{{entry.repository.html_url}}">
             {{entry.repository.full_name}}
           </a>
         </div>
         <div secondary class="layout vertical">
+          <div class="description">
+            {{entry.repository.description}}
+          </div>
           <div class="layout horizontal">
-            <div class="flex">
+            <div class="section highlighted">
               Stars: {{entry.repository.stargazers_count}}
             </div>
-            <div class="flex">
-              Submitted {{entry.createdAt}} by {{entry.postedBy.login}}
+            <div class="section highlighted">
+              Issues: {{entry.repository.open_issues_count}}
+            </div>
+
+            <div class="section">
+              Submitted {{timeAgo(entry.createdAt)}} by {{entry.postedBy.login}}
             </div>
           </div>
         </div>
       </paper-item-body>
-      <paper-icon-button icon="star" alt="favourite this!">
-      </paper-icon-button>
+      <div class="vertical layout center center-justified favorite">
+        <paper-icon-button icon="favorite-border" alt="favourite this!" on-tap="voteToggle">
+        </paper-icon-button>
+      <div>1</div>
+      </div>
     </paper-icon-item>
   </template>
 </dom-module>
