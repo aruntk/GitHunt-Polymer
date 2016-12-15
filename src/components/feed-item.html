@@ -66,9 +66,54 @@
     .favorite paper-icon-button {
       color: #666;
     }
-    .favorite paper-icon-button.liked {
+    .favorite paper-icon-button.up.selected {
       color: var(--paper-amber-500);
     }
+    .favorite paper-icon-button.down.selected {
+      color: var(--paper-red-300);
+    }
+@-webkit-keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.2, 1.2, 1.2);
+    transform: scale3d(1.2, 1.2, 1.2);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.2, 1.2, 1.2);
+    transform: scale3d(1.2, 1.2, 1.2);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.selected {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+}
     </style>
     <paper-icon-item class="item">
       <div class="avatar" item-icon>
@@ -83,7 +128,7 @@
         </div>
         <div secondary class="layout vertical">
           <div class="description">
-            {{entry.repository.description}}
+            {{emojify(entry.repository.description)}}
           </div>
           <div class="layout horizontal">
             <div class="section highlighted">
@@ -99,10 +144,19 @@
           </div>
         </div>
       </paper-item-body>
-      <div class="vertical layout center center-justified favorite">
-        <paper-icon-button icon="favorite-border" alt="favourite this!" on-tap="voteToggle">
+      <div class="horizontal layout center center-justified favorite">
+        <paper-icon-button icon="thumb-up"
+                           alt="like this!"
+                           class$="up {{_returnFavClass(entry.vote.vote_value,'1')}}"
+                           on-tap="voteUp">
         </paper-icon-button>
-      <div>1</div>
+        <div>{{entry.score}}</div>
+        <paper-icon-button icon="thumb-down"
+                           alt="dislike this!"
+                           class$="down {{_returnFavClass(entry.vote.vote_value,'-1')}}"
+                           on-tap="voteDown">
+        </paper-icon-button>
+
       </div>
     </paper-icon-item>
   </template>

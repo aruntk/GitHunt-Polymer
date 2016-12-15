@@ -2,6 +2,7 @@
 <link rel="import" href="../bower_components/app-route/app-location.html">
 
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-image/iron-image.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 
 <link rel="import" href="../bower_components/morph-animation/morph-animation.html">
@@ -28,6 +29,14 @@
 }
 .container {
   padding: 40px;
+}
+.user-avatar {
+  height: 30px;
+  width: 30px;
+}
+.user-login {
+  @apply(--paper-font-subhead);
+  margin: 5px;
 }
     </style>
     <!--================== <Router> ================-->
@@ -75,7 +84,13 @@
       <paper-header-panel mode="standard" class="fit" main>
         <paper-toolbar>
           <div class="title" title>GitHunt-Polymer</div>
-          <paper-button on-tap="login">Login</paper-button>
+          <paper-button on-tap="login" hidden="{{currentUser}}">Login using github</paper-button>
+          <div class="layout horizontal center current-user">
+            <iron-image src="{{currentUser.avatar_url}}" sizing="contain" class="user-avatar">
+            </iron-image>
+            <div class="user-login">{{currentUser.login}}</div>
+          <paper-button on-tap="logout" hidden="{{!currentUser}}">Logout</paper-button>
+          </div>
         </paper-toolbar>
         <div class="vertical layout centre container">
           <template is="dom-repeat" items="{{feed}}" as="entry">

@@ -5,6 +5,7 @@ export const feedQuery = gql`
   query Feed($type: FeedType!, $offset: Int, $limit: Int) {
     currentUser {
       login
+      avatar_url
     }
     feed(type: $type, offset: $offset, limit: $limit) {
       ...FeedEntry

@@ -39,6 +39,18 @@ module.exports = {
         target: 'http://localhost:3010',
         ws: true,
       },
+      "/graphiql": {
+        "target": "http://localhost:3010",
+        "secure": false
+      },
+      "/login": {
+        "target": "http://localhost:3010",
+        "secure": false
+      },
+      "/logout": {
+        "target": "http://localhost:3010",
+        "secure": false
+      }
     }
   },
   devtool: 'eval-source-map'

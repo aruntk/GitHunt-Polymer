@@ -86,7 +86,10 @@ class feedsPage {
       });
   }
   login() {
-    // TODO login
+    window.location.replace('/login/github');
+  }
+  logout() {
+    window.location.replace('/logout');
   }
 }
 Polymer(feedsPage);
