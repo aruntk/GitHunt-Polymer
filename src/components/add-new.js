@@ -32,7 +32,7 @@ class addNew {
     }).catch((error) => {
       // Error
       console.log(error); // eslint-disable-line no-console
-      document.querySelector('feeds-page').toast('Error. Check console for details.');
+      document.querySelector('feeds-page').toast(error.message);
     });
   }
 }
