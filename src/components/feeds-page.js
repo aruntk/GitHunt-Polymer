@@ -24,7 +24,7 @@ class feedsPage {
         type: Number,
         value: 0,
       },
-      limit: {
+      itemsPerPage: {
         type: Number,
         value: 5,
       },
@@ -42,7 +42,7 @@ class feedsPage {
     return {
       feed: {
         query: feedQuery,
-        options: 'getOptions(limit,routeData.type)',
+        options: 'getOptions(itemsPerPage,routeData.type)',
         loadingKey: 'loading',
         success(r) {
           this.set('loading', r.loading);
@@ -53,12 +53,12 @@ class feedsPage {
       },
     };
   }
-  getOptions(limit, type) {
+  getOptions(itemsPerPage, type) {
     const offset = 0;
     return {
       variables: {
         type,
-        limit,
+        limit: itemsPerPage,
         offset,
       },
     };
@@ -71,20 +71,21 @@ class feedsPage {
   loadMore() {
     const self = this;
     self.set('loading', true);
-    const offset = parseInt(self.offset, 10);
-    const limit = parseInt(self.limit, 10);
-    const newOffset = offset + limit;
+    const offset = self.feed.length;
     self.$apollo.queries.feed.fetchMore({
       variables: {
-        offset: newOffset,
+        offset,
       },
       updateQuery(prev, { fetchMoreResult }) {
-        const ret = [...self.feed, ...fetchMoreResult.data.feed];
-        return self.set('feed', ret);
+        if (!fetchMoreResult.data) {
+          return prev;
+        }
+        return Object.assign({}, prev, {
+          feed: [...prev.feed, ...fetchMoreResult.data.feed],
+        });
       },
     })
       .then(() => {
-        self.set('offset', newOffset);
         self.set('loading', false);
       });
   }
