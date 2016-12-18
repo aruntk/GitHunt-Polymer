@@ -2,6 +2,8 @@
 
 An example of a client-side app built with Polymer and Apollo Client.
 
+Polymer-Apollo package : https://github.com/aruntk/polymer-apollo
+
 Please submit a pull request if you see anything that can be improved!
 
 ## Running the app
