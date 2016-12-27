@@ -25,6 +25,7 @@
     "css-loader": "^0.23.1",
     "file-loader": "^0.8.4",
     "json-loader": "^0.5.4",
+    "wc-loader": "^0.0.3",
     "webpack": "2.1.0-beta.22",
     "webpack-dev-server": "2.1.0-beta.0",
     "bower": "^1.8.0"

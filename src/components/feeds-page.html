@@ -19,8 +19,8 @@
 <link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../bower_components/paper-toast/paper-toast.html">
 
-<link rel="import" href="../bower_components/platinum-sw/platinum-sw-cache.html">
-<link rel="import" href="../bower_components/platinum-sw/platinum-sw-register.html">
+<!-- <link rel="import" href="../bower_components/platinum-sw/platinum-sw-cache.html"> -->
+<!-- <link rel="import" href="../bower_components/platinum-sw/platinum-sw-register.html"> -->
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
 <link rel="import" href="feed-item.html">
@@ -61,14 +61,14 @@
                  text="Caching complete! This app will work offline.">
     </paper-toast>
 
-    <platinum-sw-register auto-register
-                          clients-claim
-                          skip-waiting
-                          on-service-worker-installed="displayInstalledToast">
-      <platinum-sw-cache default-cache-strategy="networkFirst"
-                         precache-file="precache.json">
-      </platinum-sw-cache>
-    </platinum-sw-register>
+    <!-- <platinum-sw-register auto-register -->
+                          <!-- clients-claim -->
+                          <!-- skip-waiting -->
+                          <!-- on-service-worker-installed="displayInstalledToast"> -->
+      <!-- <platinum-sw-cache default-cache-strategy="networkFirst" -->
+                         <!-- precache-file="precache.json"> -->
+      <!-- </platinum-sw-cache> -->
+    <!-- </platinum-sw-register> -->
 
 <iron-localstorage name="my-app-storage"
     value="{{feed}}"
@@ -129,3 +129,4 @@
     <paper-toast id="mainToast"></paper-toast>
   </template>
 </dom-module>
+<script src="feeds-page.js"></script>

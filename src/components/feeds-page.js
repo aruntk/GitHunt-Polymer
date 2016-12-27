@@ -1,8 +1,6 @@
 /* globals MorphBehavior */
 import { PolymerApolloBehavior } from '../client';
 import { feedQuery } from '../model/feed';
-import './feed-item';
-import './add-new';
 
 class feedsPage {
   beforeRegister() {

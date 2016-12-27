@@ -26,6 +26,10 @@ module.exports = {
         }
       },
       {
+        test: /\.html$/,
+        loader: 'wc',
+      },
+      {
         test: /\.json$/,
         loader: 'json'
       }

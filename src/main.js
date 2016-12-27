@@ -1,1 +1,1 @@
-import './components/feeds-page.js';
+import './components/feeds-page.html';
