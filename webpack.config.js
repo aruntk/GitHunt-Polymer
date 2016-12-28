@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var OfflinePlugin = require('offline-plugin');
 
 module.exports = {
   entry: './src/main.js',
@@ -35,6 +36,9 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new OfflinePlugin()
+  ],
   devServer: {
     // historyApiFallback: true,
     // noInfo: true,

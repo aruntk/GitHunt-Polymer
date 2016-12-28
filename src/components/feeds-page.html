@@ -19,8 +19,6 @@
 <link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../bower_components/paper-toast/paper-toast.html">
 
-<!-- <link rel="import" href="../bower_components/platinum-sw/platinum-sw-cache.html"> -->
-<!-- <link rel="import" href="../bower_components/platinum-sw/platinum-sw-register.html"> -->
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
 <link rel="import" href="feed-item.html">
@@ -50,8 +48,8 @@
 
     <app-route route="{{route}}"
                use-hash-as-path
-      pattern="/:type"
-      data="{{routeData}}">
+               pattern="/:type"
+               data="{{routeData}}">
     </app-route>
 
     <!--================= </Router> ================-->
@@ -61,72 +59,63 @@
                  text="Caching complete! This app will work offline.">
     </paper-toast>
 
-    <!-- <platinum-sw-register auto-register -->
-                          <!-- clients-claim -->
-                          <!-- skip-waiting -->
-                          <!-- on-service-worker-installed="displayInstalledToast"> -->
-      <!-- <platinum-sw-cache default-cache-strategy="networkFirst" -->
-                         <!-- precache-file="precache.json"> -->
-      <!-- </platinum-sw-cache> -->
-    <!-- </platinum-sw-register> -->
+    <iron-localstorage name="my-app-storage"
+                       value="{{feed}}"
+                       ></iron-localstorage>
 
-<iron-localstorage name="my-app-storage"
-    value="{{feed}}"
-  ></iron-localstorage>
+      <paper-drawer-panel>
+        <div drawer> 
+          <paper-toolbar id="drawerToolbar">
 
-    <paper-drawer-panel>
-      <div drawer> 
-        <paper-toolbar id="drawerToolbar">
+          </paper-toolbar>
+          <paper-menu selected="{{routeData.type}}" attr-for-selected="name">
+            <paper-icon-item name="NEW">
+              <iron-icon icon="today" item-icon>
+              </iron-icon>
+              <paper-item-body>
+                New
+              </paper-item-body>
+            </paper-icon-item>
+            <paper-icon-item name="TOP">
+              <iron-icon icon="arrow-upward" item-icon>
+              </iron-icon>
+              <paper-item-body>
+                Top
+              </paper-item-body>
+            </paper-icon-item>
 
-        </paper-toolbar>
-        <paper-menu selected="{{routeData.type}}" attr-for-selected="name">
-          <paper-icon-item name="NEW">
-            <iron-icon icon="today" item-icon>
-            </iron-icon>
-            <paper-item-body>
-              New
-            </paper-item-body>
-          </paper-icon-item>
-          <paper-icon-item name="TOP">
-            <iron-icon icon="arrow-upward" item-icon>
-            </iron-icon>
-            <paper-item-body>
-              Top
-            </paper-item-body>
-          </paper-icon-item>
-
-        </paper-menu>
-      </div>
-      <paper-header-panel mode="standard" class="fit" main>
-        <paper-toolbar>
-          <div class="title" title>GitHunt-Polymer</div>
-          <paper-button on-tap="login" hidden="{{currentUser}}">Login using github</paper-button>
-          <div class="layout horizontal center current-user">
-            <iron-image src="{{currentUser.avatar_url}}" sizing="contain" class="user-avatar">
-            </iron-image>
-            <div class="user-login">{{currentUser.login}}</div>
-          <paper-button on-tap="logout" hidden="{{!currentUser}}">Logout</paper-button>
-          </div>
-        </paper-toolbar>
-        <div class="vertical layout centre container">
-          <template is="dom-repeat" items="{{feed}}" as="entry">
-            <feed-item entry="{{entry}}"></feed-item>
-          </template>
-          <div class="vertical layout center">
-            <paper-spinner active="{{loading}}"></paper-spinner>
-          </div>
-
-          <div class="vertical layout center">
-            <paper-button on-tap="loadMore">
-              Load More
-            </paper-button>
-          </div>
+          </paper-menu>
         </div>
-      </paper-header-panel>
-    </paper-drawer-panel>
-    <add-new current-user="{{currentUser}}">
-    </add-new>
-    <paper-toast id="mainToast"></paper-toast>
+        <paper-header-panel mode="standard" class="fit" main>
+          <paper-toolbar>
+            <div class="title" title>GitHunt-Polymer</div>
+            <paper-button on-tap="login" hidden="{{currentUser}}">Login using github</paper-button>
+            <div class="layout horizontal center current-user">
+              <iron-image src="{{currentUser.avatar_url}}" sizing="contain" class="user-avatar">
+              </iron-image>
+              <div class="user-login">{{currentUser.login}}</div>
+              <paper-button on-tap="logout" hidden="{{!currentUser}}">Logout</paper-button>
+            </div>
+          </paper-toolbar>
+          <div class="vertical layout centre container">
+            <template is="dom-repeat" items="{{feed}}" as="entry">
+              <feed-item entry="{{entry}}"></feed-item>
+            </template>
+            <div class="vertical layout center">
+              <paper-spinner active="{{loading}}"></paper-spinner>
+            </div>
+
+            <div class="vertical layout center">
+              <paper-button on-tap="loadMore">
+                Load More
+              </paper-button>
+            </div>
+          </div>
+        </paper-header-panel>
+      </paper-drawer-panel>
+      <add-new current-user="{{currentUser}}">
+      </add-new>
+      <paper-toast id="mainToast"></paper-toast>
   </template>
 </dom-module>
 <script src="feeds-page.js"></script>
