@@ -27,7 +27,7 @@
     "file-loader": "^0.8.4",
     "json-loader": "^0.5.4",
     "offline-plugin": "^4.5.3",
-    "wc-loader": "^1.0.11",
+    "wc-loader": "^1.1.0",
     "webpack": "2.1.0-beta.22",
     "webpack-dev-server": "2.1.0-beta.0"
   }
