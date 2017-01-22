@@ -12,6 +12,8 @@ Please submit a pull request if you see anything that can be improved!
 
 This repository is only the Polymer frontend. Run the [GitHunt API](https://github.com/apollostack/GitHunt-API) first. (This is temporary, until we have a permanently hosted demo server.)
 
+If the apollostack/Githunt-API doesnt work try this [Githunt-API](https://github.com/aruntk/githunt-api)
+
 ### 2. Install Node/npm
 
 Make sure you have Node.js installed (the app has been tested with Node `4.4.5` and `5.3.0`)
@@ -46,3 +48,4 @@ Click the fab with plus icon in the bottom right corner and add repo with the us
 #### New Item
 Review the new item, up vote it and visit the repo via the link.   
 ![GitHunt App](screenshots/new.png)
+
