@@ -9,30 +9,30 @@ module.exports = {
     publicPath: '/dist/',
     filename: 'build.js',
   },
-  resolveLoader: {
-    root: path.join(__dirname, 'node_modules'),
-  },
+  // resolveLoader: {
+    // root: path.join(__dirname, 'node_modules'),
+  // },
   module: {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel',
+        loader: 'babel-loader',
         exclude: /node_modules/
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        loader: 'file',
+        loader: 'file-loader',
         query: {
           name: '[name].[ext]?[hash]'
         }
       },
       {
         test: /\.html$/,
-        loader: 'babel!wc',
+        loader: 'babel-loader!wc-loader',
       },
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json-loader'
       }
     ]
   },
@@ -59,7 +59,9 @@ module.exports = {
         "target": "http://localhost:3010",
         "secure": false
       }
-    }
+    },
+    // serve index.html in place of 404 responses to allow HTML5 history
+    historyApiFallback: true,
   },
   devtool: 'eval-source-map'
 };
