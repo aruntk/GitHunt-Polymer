@@ -3759,7 +3759,7 @@ wbuf@^1.1.0, wbuf@^1.4.0:
   dependencies:
     minimalistic-assert "^1.0.0"
 
-wc-loader@^1.1.0:
+wc-loader:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/wc-loader/-/wc-loader-1.1.1.tgz#461e23b8827f74e48541c3cb194a78445ec70973"
   dependencies:
