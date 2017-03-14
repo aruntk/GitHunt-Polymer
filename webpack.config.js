@@ -28,7 +28,7 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        loader: 'babel-loader!wc-loader',
+        loader: 'babel-loader!wc-loader?minify=true',
       },
       {
         test: /\.json$/,
