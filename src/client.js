@@ -1,13 +1,18 @@
 import { createNetworkInterface } from 'apollo-client';
 import { PolymerApollo } from 'polymer-apollo';
-import { Client } from 'subscriptions-transport-ws';
+import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
 // Polyfill fetch
 import 'isomorphic-fetch';
 
 import createApolloClient from './helpers/create-apollo-client';
-import addGraphQLSubscriptions from './helpers/subscriptions';
 
-const wsClient = new Client('ws://localhost:8080');
+const subscriptionsURL = process.env.NODE_ENV !== 'production'
+  ? 'ws://localhost:3010/subscriptions'
+  : 'ws://api.githunt.com/subscriptions';
+
+const wsClient = new SubscriptionClient(subscriptionsURL, {
+  reconnect: true,
+});
 
 const networkInterface = createNetworkInterface({
   uri: '/graphql',
