@@ -25,7 +25,9 @@ Make sure you have Node.js installed (the app has been tested with Node `4.4.5` 
 git clone https://github.com/aruntk/GitHunt-Polymer.git
 cd GitHunt-Polymer
 npm install
+bower install
 ```
+
 
 
 ### 4. Run the app
@@ -48,4 +50,5 @@ Click the fab with plus icon in the bottom right corner and add repo with the us
 #### New Item
 Review the new item, up vote it and visit the repo via the link.   
 ![GitHunt App](screenshots/new.png)
+
 

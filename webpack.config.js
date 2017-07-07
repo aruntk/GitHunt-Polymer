@@ -14,11 +14,11 @@ module.exports = {
   // },
   module: {
     loaders: [
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
-      },
+      // {
+        // test: /\.js$/,
+        // loader: 'babel-loader',
+        // exclude: /node_modules/
+      // },
       {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
@@ -28,7 +28,7 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        loader: 'babel-loader!wc-loader?minify=true',
+        loader: 'wc-loader?minify=true',
       },
       {
         test: /\.json$/,

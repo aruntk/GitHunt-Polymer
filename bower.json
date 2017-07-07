@@ -20,12 +20,23 @@
     "tests"
   ],
   "dependencies": {
-    "app-route": "PolymerElements/app-route#^0.9.3",
-    "iron-icon": "PolymerElements/iron-icon#^1.0.12",
-    "iron-icons": "PolymerElements/iron-icons#^1.2.0",
-    "iron-image": "PolymerElements/iron-image#^1.2.5",
-    "iron-localstorage": "PolymerElements/iron-localstorage#^1.0.6",
-    "morph-animation": "aruntk/morph-animation#^1.0.4",
-    "paper-elements": "PolymerElements/paper-elements#^1.0.7"
+    "app-layout": "^2.0.1",
+    "app-route": "PolymerElements/app-route#^2.0.0",
+    "iron-icon": "PolymerElements/iron-icon#^2.0.0",
+    "iron-icons": "PolymerElements/iron-icons#^2.0.0",
+    "iron-image": "^2.1.1",
+    "iron-localstorage": "PolymerElements/iron-localstorage#^2.0.0",
+    "morph-animation": "aruntk/morph-animation#^2.0.0",
+    "paper-button": "^2.0.0",
+    "paper-dialog": "^2.0.0",
+    "paper-dialog-scrollable": "^2.1.0",
+    "paper-fab": "^2.0.0",
+    "paper-icon-button": "^2.0.0",
+    "paper-input": "^2.0.1",
+    "paper-item": "^2.0.0",
+    "paper-listbox": "^2.0.0",
+    "paper-spinner": "^2.0.0",
+    "paper-styles": "^2.0.0",
+    "paper-toast": "^2.0.0"
   }
 }

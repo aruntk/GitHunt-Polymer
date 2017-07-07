@@ -1,9 +1,8 @@
 import { createNetworkInterface } from 'apollo-client';
-import { PolymerApollo } from 'polymer-apollo';
+import { PolymerApolloMixin } from 'polymer-apollo';
 import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
 // Polyfill fetch
 import 'isomorphic-fetch';
-
 import createApolloClient from './helpers/create-apollo-client';
 
 const subscriptionsURL = process.env.NODE_ENV !== 'production'
@@ -36,6 +35,4 @@ export const apolloClient = createApolloClient({
 // Enable Apollo dev tools
 window.__APOLLO_CLIENT__ = apolloClient;
 
-export const PolymerApolloBehavior = new PolymerApollo({ apolloClient });
-window.PolymerApolloBehavior = PolymerApolloBehavior;
-
+export const PolymerApolloClass = PolymerApolloMixin({ apolloClient }, Polymer.Element);
