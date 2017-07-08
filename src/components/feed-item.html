@@ -5,27 +5,29 @@
 <link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
 <link rel="import" href="../bower_components/paper-item/paper-item-body.html">
 <link rel="import" href="../bower_components/paper-styles/paper-styles.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
 <dom-module id="feed-item">
   <template>
+    <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
     <style>
 :host {
   background: white;
   margin: 1px;
 }
-  .item {
-    --paper-item:{
-      border-bottom: 2px solid white;
+    .item {
+      --paper-item:{
+        border-bottom: 2px solid white;
+      }
+      --paper-item-focused: {
+        background: white;
+        border-bottom: 2px solid var(--primary-color);
+      }
+      --paper-item-focused-before: {
+        opacity: 0;
+      };
     }
-    --paper-item-focused: {
-      background: white;
-      border-bottom: 2px solid var(--primary-color);
-    }
-    --paper-item-focused-before: {
-      opacity: 0;
-    };
-  }
     .avatar {
       display: inline-block;
       box-sizing: border-box;
@@ -77,48 +79,48 @@
     .favorite paper-icon-button.down.selected {
       color: var(--paper-red-300);
     }
-@-webkit-keyframes pulse {
-  from {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
+    @-webkit-keyframes pulse {
+      from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+      }
 
-  50% {
-    -webkit-transform: scale3d(1.2, 1.2, 1.2);
-    transform: scale3d(1.2, 1.2, 1.2);
-  }
+      50% {
+        -webkit-transform: scale3d(1.2, 1.2, 1.2);
+        transform: scale3d(1.2, 1.2, 1.2);
+      }
 
-  to {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-}
+      to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+      }
+    }
 
-@keyframes pulse {
-  from {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
+    @keyframes pulse {
+      from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+      }
 
-  50% {
-    -webkit-transform: scale3d(1.2, 1.2, 1.2);
-    transform: scale3d(1.2, 1.2, 1.2);
-  }
+      50% {
+        -webkit-transform: scale3d(1.2, 1.2, 1.2);
+        transform: scale3d(1.2, 1.2, 1.2);
+      }
 
-  to {
-    -webkit-transform: scale3d(1, 1, 1);
-    transform: scale3d(1, 1, 1);
-  }
-}
+      to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+      }
+    }
 
-.selected {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-animation-name: pulse;
-  animation-name: pulse;
-}
+    .selected {
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+      -webkit-animation-name: pulse;
+      animation-name: pulse;
+    }
     </style>
     <paper-icon-item class="item">
       <div class="avatar" item-icon>

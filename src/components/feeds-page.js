@@ -108,9 +108,9 @@ class FeedsPage extends PolymerApolloClass{
     if (text) {
       this.$.mainToast.hide();
       this.$.mainToast.text = text;
-      this.async(() => {
+      Polymer.Async.timeOut.after(300).run(() => {
         this.$.mainToast.show();
-      }, 300);
+      });
     }
   }
   displayInstalledToast() {
