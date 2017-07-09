@@ -1,11 +1,22 @@
 /* globals MorphBehavior */
-import { PolymerApolloBehavior } from '../client';
+import { PolymerApolloClass } from '../client';
 import { feedQuery } from '../model/feed';
 
-class feedsPage {
-  beforeRegister() {
-    this.is = 'feeds-page';
-    this.properties = Object.assign({}, this.properties, {
+class FeedsPage extends PolymerApolloClass{
+  constructor() {
+    super();
+  }
+  connectedCallback() {
+    super.connectedCallback();
+  }
+  disconnectedCallback() {
+    super.disconnectedCallback();
+  }
+  static get is() {
+    return 'feeds-page';
+  }
+  static get properties() {
+    return {
       feed: {
         type: Array,
         value: [],
@@ -17,6 +28,9 @@ class feedsPage {
       },
       routeData: {
         type: Object,
+        value: {
+          type: 'NEW',
+        },
       },
       offset: {
         type: Number,
@@ -26,14 +40,11 @@ class feedsPage {
         type: Number,
         value: 5,
       },
-    });
-    this.observers = [
-      'routeChange(route.path)',
-    ];
+    };
   }
-  get behaviors() {
+  static get observers() {
     return [
-      PolymerApolloBehavior,
+      'routeChange(route.path)',
     ];
   }
   get apollo() {
@@ -51,7 +62,7 @@ class feedsPage {
       },
     };
   }
-  getOptions(itemsPerPage, type) {
+  getOptions(itemsPerPage, type = 'NEW') {
     const offset = 0;
     return {
       variables: {
@@ -97,13 +108,13 @@ class feedsPage {
     if (text) {
       this.$.mainToast.hide();
       this.$.mainToast.text = text;
-      this.async(() => {
+      Polymer.Async.timeOut.after(300).run(() => {
         this.$.mainToast.show();
-      }, 300);
+      });
     }
   }
   displayInstalledToast() {
     this.$['caching-complete'].show();
   }
 }
-Polymer(feedsPage);
+customElements.define('feeds-page', FeedsPage);

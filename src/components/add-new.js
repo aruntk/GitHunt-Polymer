@@ -1,23 +1,19 @@
-/* globals MorphBehavior */
-import { PolymerApolloBehavior } from '../client';
+/* globals MorphMixin */
+import { PolymerApolloClass } from '../client';
 import submitRepositoryMutation from '../model/new-entry';
 
-class addNew {
-  beforeRegister() {
-    this.is = 'add-new';
-    this.properties = Object.assign(this.properties, {
+class AddNew extends MorphMixin(PolymerApolloClass) {
+  static get is() {
+    return 'add-new';
+  }
+  static get properties() {
+    return {
       currentUser: {
         type: Object,
         value: null,
       },
       value: String,
-    });
-  }
-  get behaviors() {
-    return [
-      PolymerApolloBehavior,
-      MorphBehavior,
-    ];
+    };
   }
   addNew() {
     this.$apollo.mutate({
@@ -37,4 +33,4 @@ class addNew {
   }
 }
 
-Polymer(addNew);
+customElements.define('add-new', AddNew);

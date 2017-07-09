@@ -6,17 +6,19 @@
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-localstorage/iron-localstorage.html">
 
-<link rel="import" href="../bower_components/paper-drawer-panel/paper-drawer-panel.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
 <link rel="import" href="../bower_components/paper-item/paper-item-body.html">
-<link rel="import" href="../bower_components/paper-header-panel/paper-header-panel.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../bower_components/paper-spinner/paper-spinner.html">
 <link rel="import" href="../bower_components/paper-styles/paper-styles.html">
-<link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../bower_components/paper-toast/paper-toast.html">
-
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
 <link rel="import" href="feed-item.html">
@@ -24,6 +26,7 @@
 
 <dom-module id="feeds-page">
   <template>
+    <style is="custom-style" include="iron-flex iron-flex-alignment"></style>
     <style>
 #drawerToolbar{
   background: white;
@@ -38,6 +41,10 @@
 .user-login {
   @apply(--paper-font-subhead);
   margin: 5px;
+}
+app-header {
+  background: var(--primary-color);
+  color: white;
 }
     </style>
     <!--================== <Router> ================-->
@@ -61,12 +68,14 @@
                        value="{{feed}}"
                        ></iron-localstorage>
 
-      <paper-drawer-panel>
-        <div drawer> 
-          <paper-toolbar id="drawerToolbar">
+      <app-drawer-layout>
+        <app-drawer slot="drawer">
+          <app-header id="drawerToolbar">
+            <app-toolbar>
 
-          </paper-toolbar>
-          <paper-menu selected="{{routeData.type}}" attr-for-selected="name">
+            </app-toolbar>
+          </app-header>
+          <paper-listbox selected="{{routeData.type}}" attr-for-selected="name">
             <paper-icon-item name="NEW">
               <iron-icon icon="today" item-icon>
               </iron-icon>
@@ -82,19 +91,21 @@
               </paper-item-body>
             </paper-icon-item>
 
-          </paper-menu>
-        </div>
-        <paper-header-panel mode="standard" class="fit" main>
-          <paper-toolbar>
-            <div class="title" title>GitHunt-Polymer</div>
-            <paper-button on-tap="login" hidden="{{currentUser}}">Login using github</paper-button>
-            <div class="layout horizontal center current-user">
-              <iron-image src="{{currentUser.avatar_url}}" sizing="contain" class="user-avatar">
-              </iron-image>
-              <div class="user-login">{{currentUser.login}}</div>
-              <paper-button on-tap="logout" hidden="{{!currentUser}}">Logout</paper-button>
-            </div>
-          </paper-toolbar>
+          </paper-listbox>
+        </app-drawer>
+        <app-header-layout mode="standard" class="fit" main>
+          <app-header slot="header">
+            <app-toolbar>
+              <div class="title" main-title>GitHunt-Polymer</div>
+              <paper-button on-tap="login" hidden="{{currentUser}}">Login using github</paper-button>
+              <div class="layout horizontal center current-user">
+                <iron-image src="{{currentUser.avatar_url}}" sizing="contain" class="user-avatar">
+                </iron-image>
+                <div class="user-login">{{currentUser.login}}</div>
+                <paper-button on-tap="logout" hidden="{{!currentUser}}">Logout</paper-button>
+              </div>
+            </app-toolbar>
+          </app-header>
           <div class="vertical layout centre container">
             <template is="dom-repeat" items="{{feed}}" as="entry">
               <feed-item entry="{{entry}}"></feed-item>
@@ -109,8 +120,8 @@
               </paper-button>
             </div>
           </div>
-        </paper-header-panel>
-      </paper-drawer-panel>
+        </app-header-layout>
+      </app-drawer-layout>
       <add-new current-user="{{currentUser}}">
       </add-new>
       <paper-toast id="mainToast"></paper-toast>

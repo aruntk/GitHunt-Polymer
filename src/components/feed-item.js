@@ -1,19 +1,25 @@
 import moment from 'moment';
 import emoji from 'node-emoji';
-import { PolymerApolloBehavior } from '../client';
+import { PolymerApolloClass } from '../client';
 import { voteMutation } from '../model/feed';
 
-class feedItem {
-  beforeRegister() {
-    this.is = 'feed-item';
-    this.properties = Object.assign({}, this.properties, {
-      entry: Object,
-    });
+class FeedItem extends PolymerApolloClass {
+  constructor() {
+    super();
   }
-  get behaviors() {
-    return [
-      PolymerApolloBehavior,
-    ];
+  connectedCallback() {
+    super.connectedCallback();
+  }
+  disconnectedCallback() {
+    super.disconnectedCallback();
+  }
+  static get is() {
+    return 'feed-item';
+  }
+  static get properties() {
+    return {
+      entry: Object,
+    };
   }
   timeAgo(date) {
     return moment(date).fromNow();
@@ -59,4 +65,4 @@ class feedItem {
     return emoji.emojify(text);
   }
 }
-Polymer(feedItem);
+customElements.define('feed-item', FeedItem);
